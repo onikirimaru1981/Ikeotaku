@@ -18,6 +18,9 @@ app.use(express.urlencoded({
 
 //Routes
 app.use("/users", usersRoutes);
+app.get('/', (req, res) => {
+    res.status(200).send('<h1>Biemvenido a ikeotaku</h1>');
+});
 
 //execute app listening on port
 app.listen(process.env.PORT, () =>

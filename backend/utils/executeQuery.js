@@ -10,7 +10,7 @@ const accesInfo = {
 module.exports = function (query) {
 
     return new Promise((resolve, reject) => {
-        //obtener usuarios
+
         const connection = mysql.createConnection(accesInfo);
         connection.connect();
         connection.query(query, function (err, rows, fields) {
