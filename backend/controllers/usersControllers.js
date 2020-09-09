@@ -1,10 +1,17 @@
 const usersModels = require("../models/usersModels");
+const {
+    json
+} = require("express");
 
 
 module.exports = {
     getAllUsuarios: async function (req, res) {
         //obtener usuarios
-
+        if (!process.env.DEVELOPMENT) {
+            res.status(200).json({
+                message: 'Listado de todos los usuarios'
+            })
+        };
         const usersList = await usersModels.getAllUsuarios();
 
         res.json(usersList);
@@ -12,6 +19,11 @@ module.exports = {
 
     getUsuario: async function (req, res) {
         //obtener un usuario
+        if (!process.env.DEVELOPMENT) {
+            res.status(200).json({
+                message: 'Dato de un usuario'
+            })
+        };
         const userId = req.params.id;
         const queryResult = await usersModels.getUsuario(userId)
 
@@ -20,6 +32,11 @@ module.exports = {
 
     addUser: async function (req, res) {
         //añadir usuario
+        if (!process.env.DEVELOPMENT) {
+            res.status(200).json({
+                message: 'Usuario añadido'
+            })
+        };
 
         const usuario = req.body;
         const queryResult = await usersModels.addUser(usuario);
@@ -32,6 +49,11 @@ module.exports = {
 
     updateUser: async function (req, res) {
         //actualizar usuario
+        if (!process.env.DEVELOPMENT) {
+            res.status(200).json({
+                message: 'Usuario actualizado'
+            })
+        };
         const usuario = req.body;
         const userId = req.params.id;
         const queryResult = await usersModels.updateUser(userId, usuario);
@@ -44,6 +66,11 @@ module.exports = {
 
     deleteUser: async function (req, res) {
         //borrar usuario
+        if (!process.env.DEVELOPMENT) {
+            res.status(200).json({
+                message: 'Usuario borrado'
+            })
+        };
 
         const userId = req.params.id;
         const queryResult = await usersModels.deleteUser(userId);
